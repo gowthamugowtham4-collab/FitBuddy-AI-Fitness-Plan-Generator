@@ -1,4 +1,4 @@
-# FitBuddy – AI Fitness Plan Generator using Gemini Models
+# FitBuddy-AI-Fitness-Plan-Generator
 
 A FastAPI + Jinja2 + SQLite + SQLAlchemy web application inspired by the SmartBridge FitBuddy project document.
 
