@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy | Admin{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <p class="eyebrow">ADMIN DASHBOARD</p>
+    <h1>All Users</h1>
+    <p>Review stored user profiles and original/updated plans.</p>
+  </div>
+</section>
+
+<div class="admin-table-wrap">
+<table>
+<thead><tr><th>User</th><th>Profile</th><th>Goal</th><th>Original Plan</th><th>Updated Plan</th><th>Action</th></tr></thead>
+<tbody>
+{% for user in users %}
+<tr>
+  <td><strong>{{ user.username }}</strong><br><small>{{ user.user_id }}</small></td>
+  <td>{{ user.age }} yrs<br>{{ user.weight }} kg<br>{{ user.intensity|title }}</td>
+  <td>{{ user.goal|title }}</td>
+  <td><details><summary>View</summary><pre>{{ user.original_plan }}</pre></details></td>
+  <td>
+    {% if user.updated_plan %}
+      <details><summary>View</summary><pre>{{ user.updated_plan }}</pre></details>
+    {% else %}<span class="muted">No update</span>{% endif %}
+  </td>
+  <td>
+    <form action="/delete-user/{{ user.user_id }}" method="post" onsubmit="return confirm('Delete this user?')">
+      <button class="danger" type="submit">Delete</button>
+    </form>
+  </td>
+</tr>
+{% else %}
+<tr><td colspan="6" class="empty">No users yet. Generate a plan first.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy | Generate Plan{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">AI FITNESS PLANNER</p>
+    <h1>Your personalized <span>7-day</span> fitness plan.</h1>
+    <p class="subtitle">Enter your basic profile and fitness goal. FitBuddy uses Gemini to create a structured workout plan and a practical nutrition/recovery tip.</p>
+  </div>
+  <div class="hero-card">
+    <div class="stat">7 <small>days</small></div>
+    <div class="stat">AI <small>powered</small></div>
+    <div class="stat">SQLite <small>storage</small></div>
+  </div>
+</section>
+
+<section class="card form-card">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">START HERE</p>
+      <h2>Create your plan</h2>
+    </div>
+    <span class="pill">Gemini AI</span>
+  </div>
+
+  <form action="/generate-workout" method="post" class="grid-form">
+    <label>Name
+      <input name="username" placeholder="Your name" required>
+    </label>
+    <label>User ID
+      <input name="user_id" placeholder="e.g. FB001" required>
+    </label>
+    <label>Age
+      <input name="age" type="number" min="13" max="100" placeholder="21" required>
+    </label>
+    <label>Weight (kg)
+      <input name="weight" placeholder="65" required>
+    </label>
+    <label>Fitness Goal
+      <select name="goal" required>
+        <option value="weight loss">Weight loss</option>
+        <option value="muscle gain">Muscle gain</option>
+        <option value="general wellness">General wellness</option>
+        <option value="flexibility">Flexibility</option>
+        <option value="endurance">Endurance</option>
+      </select>
+    </label>
+    <label>Workout Intensity
+      <select name="intensity" required>
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+    </label>
+    <div class="full">
+      <button class="btn" type="submit">Generate My Plan →</button>
+    </div>
+  </form>
+  <p class="notice">Educational demo: AI-generated fitness content is general information, not medical advice.</p>
+</section>
+{% endblock %}

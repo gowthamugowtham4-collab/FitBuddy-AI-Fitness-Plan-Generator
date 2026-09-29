@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy | Feedback{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <p class="eyebrow">PLAN UPDATE</p>
+  <h1>Refine your workout</h1>
+  <p>Enter the User ID and describe the changes you want. FitBuddy will regenerate the plan.</p>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <form action="/submit-feedback" method="post">
+    <label>User ID
+      <input name="user_id" required placeholder="FB001">
+    </label>
+    <label>Feedback
+      <textarea name="feedback" rows="6" required placeholder="More focus on cardio, easier leg exercises, add rest day..."></textarea>
+    </label>
+    <button class="btn" type="submit">Update Plan →</button>
+  </form>
+</section>
+{% endblock %}

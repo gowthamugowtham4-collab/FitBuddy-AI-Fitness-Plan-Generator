@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy | Your Plan{% endblock %}
+{% block content %}
+{% if message %}
+<div class="success">{{ message }}</div>
+{% endif %}
+
+<section class="page-head">
+  <div>
+    <p class="eyebrow">PERSONALIZED RESULT</p>
+    <h1>Hello, {{ user.username }} 👋</h1>
+    <p>{{ user.goal|title }} • {{ user.intensity|title }} intensity</p>
+  </div>
+  <a class="btn secondary" href="/">New Plan</a>
+</section>
+
+<div class="profile-grid">
+  <div class="mini-card"><span>User ID</span><strong>{{ user.user_id }}</strong></div>
+  <div class="mini-card"><span>Age</span><strong>{{ user.age }}</strong></div>
+  <div class="mini-card"><span>Weight</span><strong>{{ user.weight }} kg</strong></div>
+  <div class="mini-card"><span>Goal</span><strong>{{ user.goal|title }}</strong></div>
+</div>
+
+<section class="card">
+  <div class="section-heading">
+    <div><p class="eyebrow">AI WORKOUT</p><h2>7-Day Workout Plan</h2></div>
+    <span class="pill">Gemini</span>
+  </div>
+  <pre class="plan">{{ workout_plan }}</pre>
+</section>
+
+<section class="tip-card">
+  <p class="eyebrow">NUTRITION / RECOVERY</p>
+  <h2>Today's tip</h2>
+  <p>{{ nutrition_tip }}</p>
+</section>
+
+<section class="card">
+  <div class="section-heading"><div><p class="eyebrow">ADAPT</p><h2>Update with feedback</h2></div></div>
+  <form action="/submit-feedback" method="post">
+    <input type="hidden" name="user_id" value="{{ user.user_id }}">
+    <textarea name="feedback" rows="4" placeholder="Example: Add more cardio or include more rest days." required></textarea>
+    <button class="btn" type="submit">Update Plan with AI →</button>
+  </form>
+</section>
+{% endblock %}
